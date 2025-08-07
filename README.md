@@ -84,3 +84,49 @@ void createDirectory() {
             cout << "Error creating directory.\n";
     }
 }
+
+void changeDirectory() {
+    int choice;
+    cout << "\n[1] Move to Parent Directory\n[2] Move to Root Directory\n[3] Enter Custom Path\nEnter choice: ";
+    cin >> choice;
+    cin.ignore();
+
+    fs::path current = fs::current_path();
+
+    switch (choice) {
+        case 1: {
+            fs::path parent = current.parent_path();
+            if (!parent.empty() && fs::exists(parent)) {
+                fs::current_path(parent);
+                cout << "Current directory changed to: " << parent << endl;
+            } else {
+                cout << "Error: Unable to move to parent directory.\n";
+            }
+            break;
+        }
+        case 2: {
+            fs::path root = current.root_path();
+            if (!root.empty() && fs::exists(root)) {
+                fs::current_path(root);
+                cout << "Current directory changed to: " << root << endl;
+            } else {
+                cout << "Error: Unable to move to root directory.\n";
+            }
+            break;
+        }
+        case 3: {
+            string path;
+            cout << "Enter path: ";
+            getline(cin, path);
+            if (fs::exists(path) && fs::is_directory(path)) {
+                fs::current_path(path);
+                cout << "Current directory changed to: " << fs::current_path() << endl;
+            } else {
+                cout << "Error: Directory \"" << path << "\" not found!\n";
+            }
+            break;
+        }
+        default:
+            cout << "Invalid choice.\n";
+    }
+}
