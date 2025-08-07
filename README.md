@@ -131,3 +131,27 @@ void changeDirectory() {
     }
 }
 
+void mainMenu() {
+    int choice;
+    do {
+        displayCurrentDirectory();
+        cout << "\n--- Directory Management System ---\n";
+        cout << "[1] List Files\n[2] Create Directory\n[3] Change Directory\n[4] Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: listFiles(); break;
+            case 2: createDirectory(); break;
+            case 3: changeDirectory(); break;
+            case 4: cout << "Exiting program...\n"; break;
+            default: cout << "Invalid choice.\n";
+        }
+    } while (choice != 4);
+}
+
+int main() {
+    mainMenu();
+    return 0;
+}
+
