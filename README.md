@@ -28,3 +28,13 @@ void listFilesByExtension(const string& ext) {
     }
 }
 
+void listFilesByPattern(const string& pattern) {
+    cout << "\nFiles matching pattern \"" << pattern << "\":\n";
+    for (const auto& entry : fs::directory_iterator(fs::current_path())) {
+        if (fs::is_regular_file(entry)) {
+            string filename = entry.path().filename().string();
+            if (filename.find(pattern) != string::npos)
+                cout << "- " << filename << endl;
+        }
+    }
+}
