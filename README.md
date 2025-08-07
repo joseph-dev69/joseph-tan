@@ -38,3 +38,33 @@ void listFilesByPattern(const string& pattern) {
         }
     }
 }
+
+void listFiles() {
+    int choice;
+    cout << "\n[1] List All Files\n[2] List by Extension\n[3] List by Pattern\nEnter choice: ";
+    cin >> choice;
+    cin.ignore();
+
+    switch (choice) {
+        case 1:
+            listAllFiles();
+            break;
+        case 2: {
+            string ext;
+            cout << "Enter file extension (e.g., .txt): ";
+            getline(cin, ext);
+            listFilesByExtension(ext);
+            break;
+        }
+        case 3: {
+            string pattern;
+            cout << "Enter file pattern (substring match, e.g., moha): ";
+            getline(cin, pattern);
+            listFilesByPattern(pattern);
+            break;
+        }
+        default:
+            cout << "Invalid choice.\n";
+    }
+}
+
