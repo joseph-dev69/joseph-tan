@@ -68,3 +68,19 @@ void listFiles() {
     }
 }
 
+void createDirectory() {
+    string dirName;
+    cout << "\nEnter directory name: ";
+    cin.ignore();
+    getline(cin, dirName);
+
+    fs::path dirPath = fs::current_path() / dirName;
+    if (fs::exists(dirPath)) {
+        cout << "Directory \"" << dirName << "\" already exists!\n";
+    } else {
+        if (fs::create_directory(dirPath))
+            cout << "Directory \"" << dirName << "\" created successfully.\n";
+        else
+            cout << "Error creating directory.\n";
+    }
+}
