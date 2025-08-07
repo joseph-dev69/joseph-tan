@@ -27,3 +27,4 @@ void listFilesByExtension(const string& ext) {
             cout << "- " << entry.path().filename().string() << endl;
     }
 }
+
